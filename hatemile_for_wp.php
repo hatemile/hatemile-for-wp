@@ -24,17 +24,58 @@ function executeHatemileByBuffer()
 function executeHatemile($html)
 {
     try {
-        $hatemilePath = plugin_dir_path(__FILE__) . 'hatemile_for_php/hatemile/';
-
-        require_once plugin_dir_path(__FILE__) . 'phpQuery/phpQuery/phpQuery.php';
-        require_once $hatemilePath . 'util/Configure.php';
-        require_once $hatemilePath . 'util/phpquery/phpQueryHTMLDOMParser.php';
-        require_once $hatemilePath . 'implementation/AccessibleEventImplementation.php';
-        require_once $hatemilePath . 'implementation/AccessibleFormImplementation.php';
-        require_once $hatemilePath . 'implementation/AccessibleImageImplementation.php';
-        require_once $hatemilePath . 'implementation/AccessibleSelectorImplementation.php';
-        require_once $hatemilePath . 'implementation/AccessibleNavigationImplementation.php';
-        require_once $hatemilePath . 'implementation/AccessibleTableImplementation.php';
+        $hatemilePath = join(DIRECTORY_SEPARATOR, array(
+            plugin_dir_path(__FILE__),
+            'hatemile_for_php',
+            'hatemile'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            plugin_dir_path(__FILE__),
+            'phpQuery',
+            'phpQuery',
+            'phpQuery.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'implementation',
+            'AccessibleEventImplementation.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'implementation',
+            'AccessibleFormImplementation.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'implementation',
+            'AccessibleImageImplementation.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'implementation',
+            'AccessibleSelectorImplementation.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'implementation',
+            'AccessibleNavigationImplementation.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'implementation',
+            'AccessibleTableImplementation.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'util',
+            'Configure.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'util',
+            'phpquery',
+            'phpQueryHTMLDOMParser.php'
+        ));
 
         $parser = new hatemile\util\phpquery\phpQueryHTMLDOMParser($html);
         $configure = new hatemile\util\Configure(plugin_dir_path(__FILE__) . 'hatemile-configure.xml');
