@@ -24,8 +24,6 @@ function executeHatemile($html) {
     if (!is_admin()) {
         try {
             $hatemilePath = plugin_dir_path(__FILE__) . 'hatemile_for_php/hatemile/';
-            
-            echo plugin_dir_path(__FILE__) . 'hatemile-configure.xml';
 
             require_once plugin_dir_path(__FILE__) . 'phpQuery/phpQuery/phpQuery.php';
             require_once $hatemilePath . 'util/Configure.php';
