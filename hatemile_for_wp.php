@@ -86,42 +86,49 @@ function executeHatemile($html)
             'PhpQueryHTMLDOMParser.php'
         ));
 
-        /*$parser = new hatemile\util\phpquery\phpQueryHTMLDOMParser($html);
-        $configure = new hatemile\util\Configure(plugin_dir_path(__FILE__) . 'hatemile-configure.xml');
+        $configure = new hatemile\util\Configure();
+        $htmlParser = new hatemile\util\html\phpquery\PhpQueryHTMLDOMParser($html);
+        $cssParser = new hatemile\util\css\phpcssparser\PHPCSSParser($htmlParser);
 
-        $commonElements = $parser->createElement('link');
-        $commonElements->setAttribute('rel', 'stylesheet');
-        $commonElements->setAttribute('type', 'text/css');
-        $commonElements->setAttribute('href', get_site_url() . '/wp-content/plugins/hatemile_for_wp/hatemile_for_php/css/common_elements.css');
-        $parser->find('head')->firstResult()->appendElement($commonElements);
+        $accessibleEvent = new hatemile\implementation\AccessibleEventImplementation($htmlParser, $configure);
+        $accessibleCSS = new hatemile\implementation\AccessibleCSSImplementation($htmlParser, $cssParser, $configure);
+        $accessibleForm = new hatemile\implementation\AccessibleFormImplementation($htmlParser, $configure);
+        $accessibleNavigation = new hatemile\implementation\AccessibleNavigationImplementation($htmlParser, $configure);
+        $accessibleAssociation = new hatemile\implementation\AccessibleAssociationImplementation($htmlParser, $configure);
+        $accessibleDisplay = new hatemile\implementation\AccessibleDisplayScreenReaderImplementation($htmlParser, $configure, $_SERVER['HTTP_USER_AGENT']);
 
-        $accessibleEvent = new hatemile\implementation\AccessibleEventImplementation($parser, $configure);
-        $accessibleEvent->fixDragsandDrops();
-        $accessibleEvent->fixActives();
-        $accessibleEvent->fixHovers();
+        $accessibleEvent->makeAccessibleAllDragandDropEvents();
+        $accessibleEvent->makeAccessibleAllClickEvents();
+        $accessibleEvent->makeAccessibleAllHoverEvents();
 
-        $accessibleForm = new hatemile\implementation\AccessibleFormImplementation($parser, $configure);
-        $accessibleForm->fixRequiredFields();
-        $accessibleForm->fixRangeFields();
-        $accessibleForm->fixLabels();
-        $accessibleForm->fixAutoCompleteFields();
+        $accessibleForm->markAllAutoCompleteFields();
+        $accessibleForm->markAllRequiredFields();
+        $accessibleForm->markAllRangeFields();
+        $accessibleForm->markAllInvalidFields();
 
-        $accessibleImage = new hatemile\implementation\AccessibleImageImplementation($parser, $configure);
-        $accessibleImage->fixLongDescriptions();
+        $accessibleNavigation->provideNavigationByAllHeadings();
+        $accessibleNavigation->provideNavigationByAllSkippers();
+        $accessibleNavigation->provideNavigationToAllLongDescriptions();
 
-        $accessibleSelector = new hatemile\implementation\AccessibleSelectorImplementation($parser, $configure);
-        $accessibleSelector->fixSelectors();
+        $accessibleAssociation->associateAllDataCellsWithHeaderCells();
+        $accessibleAssociation->associateAllLabelsWithFields();
 
-        $accessibleShortcut = new hatemile\implementation\AccessibleNavigationImplementation($parser, $configure, $_SERVER['HTTP_USER_AGENT']);
-        $accessibleShortcut->fixShortcuts();
-        $accessibleShortcut->fixHeadings();
-        $accessibleShortcut->fixSkippers();
+        $accessibleDisplay->displayAllShortcuts();
+        $accessibleDisplay->displayAllRoles();
+        $accessibleDisplay->displayAllCellHeaders();
+        $accessibleDisplay->displayAllWAIARIAStates();
+        $accessibleDisplay->displayAllLinksAttributes();
+        $accessibleDisplay->displayAllTitles();
+        $accessibleDisplay->displayAllLanguages();
+        $accessibleDisplay->displayAllAlternativeTextImages();
 
-        $accessibleTable = new hatemile\implementation\AccessibleTableImplementation($parser, $configure);
-        $accessibleTable->fixAssociationCellsTables();
+        $accessibleNavigation->provideNavigationByAllSkippers();
+        $accessibleDisplay->displayAllShortcuts();
 
-        return $parser->getHTML();*/
-    } catch (Exception $e) {
+        $accessibleCSS->provideAllSpeakProperties();
+
+        return $htmlParser->getHTML();
+    } catch (Exception $exception) {
         return $html;
     }
     return $html;
