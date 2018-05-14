@@ -27,6 +27,7 @@ function executeHatemile($html)
         $hatemilePath = join(DIRECTORY_SEPARATOR, array(
             plugin_dir_path(__FILE__),
             'hatemile_for_php',
+            'src',
             'hatemile'
         ));
         require_once join(DIRECTORY_SEPARATOR, array(
@@ -34,6 +35,21 @@ function executeHatemile($html)
             'phpQuery',
             'phpQuery',
             'phpQuery.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'implementation',
+            'AccessibleAssociationImplementation.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'implementation',
+            'AccessibleCSSImplementation.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'implementation',
+            'AccessibleDisplayScreenReaderImplementation.php'
         ));
         require_once join(DIRECTORY_SEPARATOR, array(
             $hatemilePath,
@@ -48,22 +64,7 @@ function executeHatemile($html)
         require_once join(DIRECTORY_SEPARATOR, array(
             $hatemilePath,
             'implementation',
-            'AccessibleImageImplementation.php'
-        ));
-        require_once join(DIRECTORY_SEPARATOR, array(
-            $hatemilePath,
-            'implementation',
-            'AccessibleSelectorImplementation.php'
-        ));
-        require_once join(DIRECTORY_SEPARATOR, array(
-            $hatemilePath,
-            'implementation',
             'AccessibleNavigationImplementation.php'
-        ));
-        require_once join(DIRECTORY_SEPARATOR, array(
-            $hatemilePath,
-            'implementation',
-            'AccessibleTableImplementation.php'
         ));
         require_once join(DIRECTORY_SEPARATOR, array(
             $hatemilePath,
@@ -73,11 +74,19 @@ function executeHatemile($html)
         require_once join(DIRECTORY_SEPARATOR, array(
             $hatemilePath,
             'util',
+            'css',
+            'phpcssparser',
+            'PHPCSSParser.php'
+        ));
+        require_once join(DIRECTORY_SEPARATOR, array(
+            $hatemilePath,
+            'util',
+            'html',
             'phpquery',
-            'phpQueryHTMLDOMParser.php'
+            'PhpQueryHTMLDOMParser.php'
         ));
 
-        $parser = new hatemile\util\phpquery\phpQueryHTMLDOMParser($html);
+        /*$parser = new hatemile\util\phpquery\phpQueryHTMLDOMParser($html);
         $configure = new hatemile\util\Configure(plugin_dir_path(__FILE__) . 'hatemile-configure.xml');
 
         $commonElements = $parser->createElement('link');
@@ -111,10 +120,11 @@ function executeHatemile($html)
         $accessibleTable = new hatemile\implementation\AccessibleTableImplementation($parser, $configure);
         $accessibleTable->fixAssociationCellsTables();
 
-        return $parser->getHTML();
+        return $parser->getHTML();*/
     } catch (Exception $e) {
         return $html;
     }
+    return $html;
 }
 
 if (!is_admin()) {
