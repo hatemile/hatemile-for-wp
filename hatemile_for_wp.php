@@ -95,7 +95,7 @@ function executeHatemile($html)
         $accessibleForm = new hatemile\implementation\AccessibleFormImplementation($htmlParser, $configure);
         $accessibleNavigation = new hatemile\implementation\AccessibleNavigationImplementation($htmlParser, $configure);
         $accessibleAssociation = new hatemile\implementation\AccessibleAssociationImplementation($htmlParser, $configure);
-        $accessibleDisplay = new hatemile\implementation\AccessibleDisplayScreenReaderImplementation($htmlParser, $configure, $_SERVER['HTTP_USER_AGENT']);
+        $accessibleDisplay = new hatemile\implementation\AccessibleDisplayScreenReaderImplementation($htmlParser, $configure);
 
         $accessibleEvent->makeAccessibleAllDragandDropEvents();
         $accessibleEvent->makeAccessibleAllClickEvents();
