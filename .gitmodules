@@ -1,0 +1,6 @@
+[submodule "hatemile_for_php"]
+	path = hatemile_for_php
+	url = https://github.com/hatemile/hatemile-for-php.git
+[submodule "phpQuery"]
+	path = phpQuery
+	url = https://github.com/punkave/phpQuery.git
