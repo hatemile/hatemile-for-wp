@@ -88,10 +88,8 @@ function executeHatemile($html)
 
         $configure = new hatemile\util\Configure();
         $htmlParser = new hatemile\util\html\phpquery\PhpQueryHTMLDOMParser($html);
-        $cssParser = new hatemile\util\css\phpcssparser\PHPCSSParser($htmlParser);
 
         $accessibleEvent = new hatemile\implementation\AccessibleEventImplementation($htmlParser, $configure);
-        $accessibleCSS = new hatemile\implementation\AccessibleCSSImplementation($htmlParser, $cssParser, $configure);
         $accessibleForm = new hatemile\implementation\AccessibleFormImplementation($htmlParser, $configure);
         $accessibleNavigation = new hatemile\implementation\AccessibleNavigationImplementation($htmlParser, $configure);
         $accessibleAssociation = new hatemile\implementation\AccessibleAssociationImplementation($htmlParser, $configure);
@@ -125,16 +123,12 @@ function executeHatemile($html)
         $accessibleNavigation->provideNavigationByAllSkippers();
         $accessibleDisplay->displayAllShortcuts();
 
-        $accessibleCSS->provideAllSpeakProperties();
-
         return $htmlParser->getHTML();
     } catch (Exception $exception) {
         return $html;
     }
-    return $html;
 }
 
 if (!is_admin()) {
-    add_action('init', 'executeHatemileByBuffer');
-    add_filter('shutdown', 'ob_end_flush');
+    add_action('init', 'executeHatemileByBuffer', 1);
 }
