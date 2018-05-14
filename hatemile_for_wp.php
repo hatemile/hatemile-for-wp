@@ -11,7 +11,8 @@
 /**
  * Execute the HaTeMiLe by buffer of PHP.
  */
-function executeHatemileByBuffer() {
+function executeHatemileByBuffer()
+{
     ob_start('executeHatemile');
 }
 
@@ -20,7 +21,8 @@ function executeHatemileByBuffer() {
  * @param string $html The HTML code of page.
  * @return string The new HTML code of page.
  */
-function executeHatemile($html) {
+function executeHatemile($html)
+{
     try {
         $hatemilePath = plugin_dir_path(__FILE__) . 'hatemile_for_php/hatemile/';
 
