@@ -130,6 +130,21 @@ function executeHatemile($html)
         $accessibleNavigation->provideNavigationByAllSkippers();
         $accessibleDisplay->displayAllShortcuts();
 
+        $local = $htmlParser->find('head')->firstResult();
+        if ($local !== null) {
+            $styleHideElements = $htmlParser->createElement('link');
+            $styleHideElements->setAttribute('rel', 'stylesheet');
+            $styleHideElements->setAttribute('type', 'text/css');
+            $styleHideElements->setAttribute(
+                'href',
+                get_site_url(
+                    get_current_blog_id(),
+                    '/wp-content/plugins/hatemile-for-wp/css/hide_changes.css'
+                )
+            );
+            $local->appendElement($styleHideElements);
+        }
+
         return $htmlParser->getHTML();
     } catch (Exception $exception) {
         return $html;
