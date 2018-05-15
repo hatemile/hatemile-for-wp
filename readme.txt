@@ -25,9 +25,3 @@ Features of HaTeMiLe for WP:
 
 1. Upload the hatemile_for_wp directory to the '/wp-content/plugins/' directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-
-== Frequently Asked Questions ==
-
-= How hide the visual changes of the plugin? =
-
-Increase the <link rel="stylesheet" type="text/css" href="<?php echo get_site_url() ?>/wp-content/plugins/hatemile_for_wp/hatemile_for_php/css/hide_changes.css" /> in head of page.
