@@ -1,9 +1,9 @@
 === HaTeMiLe for WP ===
 Contributors: Carlson Santana Cruz
 Tags: accessibility, screen reader
-Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
+Requires at least: 3.2.0
+Tested up to: 4.9.5
+Stable tag: 4.9.5
 License: Apache License, Version 2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
