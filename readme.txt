@@ -7,19 +7,18 @@ Stable tag: 4.9.5
 License: Apache License, Version 2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
-HaTeMiLe for WP improve accessibility web pages, converting pages with HTML code into pages with a more accessible code.
+HaTeMiLe for WP is a wordpress plugin that convert the HTML code of pages in a code more accessible.
 
 == Description ==
 
-Features of HaTeMiLe for WP:
-* For elements with only mouse events to trigger an action, the add-on provide the same functionality via the corresponding keyboard events;
-* Display when the fields are required;
-* Display the minimum and maximum value of the fields;
-* Display the the field has auto-complete;
-* Create a list of keyboard shortcuts of the page;
-* Create a summary of the page, using the headings of the page;
-* Create skip links for the important sections of the page;
-* Associate data cells with header cells of table.
+HaTeMiLe for WP is a wordpress plugin that convert the HTML code of pages in a code more accessible.
+
+Accessibility solutions
+* Associate HTML elements;
+* Display inacessible informations of page;
+* Enable all functionality of page available from a keyboard;
+* Improve the acessibility of forms;
+* Provide accessibility resources to navigate.
 
 == Installation ==
 

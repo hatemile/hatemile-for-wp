@@ -1,7 +1,7 @@
 <?php
 /*
   Plugin Name: HaTeMiLe for WP
-  Description: HaTeMiLe for WP improve accessibility web pages, converting pages with HTML code into pages with a more accessible code.
+  Description: HaTeMiLe for WP is a wordpress plugin that convert the HTML code of pages in a code more accessible.
   Version: 1.0
   Author: Carlson Santana Cruz
   License: Apache License, Version 2.0
