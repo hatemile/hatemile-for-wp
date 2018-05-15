@@ -8,65 +8,97 @@
   License URI: http://www.apache.org/licenses/LICENSE-2.0
 */
 
+const HATEMILE_PLUGIN_DOMAIN = 'hatemile-plugin-domain';
+
 $hatemileOptions = array(
     array(
         'id' => 'hide_hatemile_changes',
-        'label' => 'Hide visual changes of HaTeMiLe',
+        'label' => __(
+            'Hide visual changes of HaTeMiLe',
+            HATEMILE_PLUGIN_DOMAIN
+        ),
         'default' => 'on'
     ),
     array(
         'id' => 'display_all_alternative_text_images',
-        'label' => 'Display the alternative text of all images',
+        'label' => __(
+            'Display the alternative text of all images',
+            HATEMILE_PLUGIN_DOMAIN
+        ),
         'default' => 'on'
     ),
     array(
         'id' => 'display_all_cell_headers',
-        'label' => 'Display the headers of each data cell of all tables',
+        'label' => __(
+            'Display the headers of each data cell of all tables',
+            HATEMILE_PLUGIN_DOMAIN
+        ),
         'default' => 'on'
     ),
     array(
         'id' => 'display_all_languages',
-        'label' => 'Display the language of all elements',
+        'label' => __(
+            'Display the language of all elements',
+            HATEMILE_PLUGIN_DOMAIN
+        ),
         'default' => 'on'
     ),
     array(
         'id' => 'display_all_links_attributes',
-        'label' => 'Display the attributes of all links',
+        'label' => __(
+            'Display the attributes of all links',
+            HATEMILE_PLUGIN_DOMAIN
+        ),
         'default' => 'on'
     ),
     array(
         'id' => 'display_all_roles',
-        'label' => 'Display the WAI-ARIA roles of all elements',
+        'label' => __(
+            'Display the WAI-ARIA roles of all elements',
+            HATEMILE_PLUGIN_DOMAIN
+        ),
         'default' => 'on'
     ),
     array(
         'id' => 'display_all_titles',
-        'label' => 'Display the titles of all elements',
+        'label' => __(
+            'Display the titles of all elements',
+            HATEMILE_PLUGIN_DOMAIN
+        ),
         'default' => 'on'
     ),
     array(
         'id' => 'display_all_shortcuts',
-        'label' => 'Display all shortcuts',
+        'label' => __('Display all shortcuts', HATEMILE_PLUGIN_DOMAIN),
         'default' => 'on'
     ),
     array(
         'id' => 'display_all_wai_aria_states',
-        'label' => 'Display the WAI-ARIA attributes of all elements',
+        'label' => __(
+            'Display the WAI-ARIA attributes of all elements',
+            HATEMILE_PLUGIN_DOMAIN
+        ),
         'default' => 'on'
     ),
     array(
         'id' => 'provide_navigation_to_all_long_descriptions',
-        'label' => 'Provide links to access the longs descriptions',
+        'label' => __(
+            'Provide links to access the longs descriptions',
+            HATEMILE_PLUGIN_DOMAIN
+        ),
         'default' => 'on'
     ),
     array(
         'id' => 'provide_navigation_by_all_headings',
-        'label' => 'Provide navigation by headings',
+        'label' => __('Provide navigation by headings', HATEMILE_PLUGIN_DOMAIN),
         'default' => 'on'
     ),
     array(
         'id' => 'provide_navigation_by_all_skippers',
-        'label' => 'Provide navigation by content skippers',
+        'label' => __(
+            'Provide navigation by content skippers',
+            HATEMILE_PLUGIN_DOMAIN
+        ),
         'default' => 'on'
     )
 );
