@@ -78,17 +78,19 @@ function loadStaticFilesFromHatemile($htmlParser) {
     $local = $htmlParser->find('head')->firstResult();
     $body = $htmlParser->find('body')->firstResult();
     if (($local !== null) && ($body !== null)) {
-        $styleHideElements = $htmlParser->createElement('link');
-        $styleHideElements->setAttribute('rel', 'stylesheet');
-        $styleHideElements->setAttribute('type', 'text/css');
-        $styleHideElements->setAttribute(
-            'href',
-            get_site_url(
-                get_current_blog_id(),
-                '/wp-content/plugins/hatemile-for-wp/css/hide_changes.css'
-            )
-        );
-        $local->appendElement($styleHideElements);
+        if (isEnableHaTeMiLeOption('hatemile_hide_hatemile_changes')) {
+            $styleHideElements = $htmlParser->createElement('link');
+            $styleHideElements->setAttribute('rel', 'stylesheet');
+            $styleHideElements->setAttribute('type', 'text/css');
+            $styleHideElements->setAttribute(
+                'href',
+                get_site_url(
+                    get_current_blog_id(),
+                    '/wp-content/plugins/hatemile-for-wp/css/hide_changes.css'
+                )
+            );
+            $local->appendElement($styleHideElements);
+        }
 
 
         $javascriptPath = (
@@ -215,21 +217,67 @@ function executeHatemile($html)
         $accessibleForm->markAllRangeFields();
         $accessibleForm->markAllInvalidFields();
 
-        $accessibleDisplay->displayAllShortcuts();
-        $accessibleDisplay->displayAllRoles();
-        $accessibleDisplay->displayAllCellHeaders();
-        $accessibleDisplay->displayAllWAIARIAStates();
-        $accessibleDisplay->displayAllLinksAttributes();
-        $accessibleDisplay->displayAllTitles();
-        $accessibleDisplay->displayAllLanguages();
-        $accessibleDisplay->displayAllAlternativeTextImages();
+        if (isEnableHaTeMiLeOption('hatemile_display_all_shortcuts')) {
+            $accessibleDisplay->displayAllShortcuts();
+        }
+        if (isEnableHaTeMiLeOption('hatemile_display_all_roles')) {
+            $accessibleDisplay->displayAllRoles();
+        }
+        if (isEnableHaTeMiLeOption('hatemile_display_all_cell_headers')) {
+            $accessibleDisplay->displayAllCellHeaders();
+        }
+        if (isEnableHaTeMiLeOption('hatemile_display_all_wai_aria_states')) {
+            $accessibleDisplay->displayAllWAIARIAStates();
+        }
+        if (isEnableHaTeMiLeOption('hatemile_display_all_links_attributes')) {
+            $accessibleDisplay->displayAllLinksAttributes();
+        }
+        if (isEnableHaTeMiLeOption('hatemile_display_all_titles')) {
+            $accessibleDisplay->displayAllTitles();
+        }
+        if (isEnableHaTeMiLeOption('hatemile_display_all_languages')) {
+            $accessibleDisplay->displayAllLanguages();
+        }
+        if (
+            isEnableHaTeMiLeOption(
+                'hatemile_display_all_alternative_text_images'
+            )
+        ) {
+            $accessibleDisplay->displayAllAlternativeTextImages();
+        }
 
-        $accessibleNavigation->provideNavigationByAllHeadings();
-        $accessibleNavigation->provideNavigationByAllSkippers();
-        $accessibleNavigation->provideNavigationToAllLongDescriptions();
+        if (
+            isEnableHaTeMiLeOption(
+                'hatemile_provide_navigation_by_all_headings'
+            )
+        ) {
+            $accessibleNavigation->provideNavigationByAllHeadings();
+        }
+        if (
+            isEnableHaTeMiLeOption(
+                'hatemile_provide_navigation_by_all_skippers'
+            )
+        ) {
+            $accessibleNavigation->provideNavigationByAllSkippers();
+        }
+        if (
+            isEnableHaTeMiLeOption(
+                'hatemile_provide_navigation_to_all_long_descriptions'
+            )
+        ) {
+            $accessibleNavigation->provideNavigationToAllLongDescriptions();
+        }
 
-        $accessibleNavigation->provideNavigationByAllSkippers();
-        $accessibleDisplay->displayAllShortcuts();
+        if (
+            isEnableHaTeMiLeOption(
+                'hatemile_provide_navigation_by_all_skippers'
+            )
+        ) {
+            $accessibleNavigation->provideNavigationByAllSkippers();
+        }
+        if (isEnableHaTeMiLeOption('hatemile_display_all_shortcuts')) {
+            $accessibleDisplay->displayAllShortcuts();
+        }
 
         return $htmlParser->getHTML();
     } catch (Exception $exception) {

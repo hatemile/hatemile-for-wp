@@ -30,7 +30,7 @@ $hatemileOptions = array(
         'default' => 'on'
     ),
     array(
-        'id' => 'display_all_links-attributes',
+        'id' => 'display_all_links_attributes',
         'label' => 'Display the attributes of all links',
         'default' => 'on'
     ),
