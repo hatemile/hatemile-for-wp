@@ -1,6 +1,6 @@
 === HaTeMiLe for WP ===
 Contributors: Carlson Santana Cruz
-Tags: accessibility, screen reader
+Tags: accessibility, screen reader, assistive technology, wcag, wai-aria
 Requires at least: 3.2.0
 Tested up to: 4.9.5
 Stable tag: 4.9.5
