@@ -1,6 +1,7 @@
 === HaTeMiLe for WP ===
-Contributors: Carlson Santana Cruz
+Contributors: carlsonsantana
 Tags: accessibility, screen reader, assistive technology, wcag, wai-aria
+Donate link: https://github.com/hatemile/hatemile-for-wp/blob/master/CONTRIBUTING.md#donate
 Requires at least: 3.2.0
 Tested up to: 4.9.5
 Stable tag: 4.9.5
