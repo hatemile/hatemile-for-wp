@@ -71,6 +71,105 @@ use hatemile\util\Configure;
 use hatemile\util\html\phpquery\PhpQueryHTMLDOMParser;
 
 /**
+ * Load the static files using URLs, to reduce the size of pages.
+ * @param \hatemile\util\html\HTMLDOMParser $htmlParser The HTML parser.
+ */
+function loadStaticFilesFromHatemile($htmlParser) {
+    $local = $htmlParser->find('head')->firstResult();
+    $body = $htmlParser->find('body')->firstResult();
+    if (($local !== null) && ($body !== null)) {
+        $styleHideElements = $htmlParser->createElement('link');
+        $styleHideElements->setAttribute('rel', 'stylesheet');
+        $styleHideElements->setAttribute('type', 'text/css');
+        $styleHideElements->setAttribute(
+            'href',
+            get_site_url(
+                get_current_blog_id(),
+                '/wp-content/plugins/hatemile-for-wp/css/hide_changes.css'
+            )
+        );
+        $local->appendElement($styleHideElements);
+
+
+        $javascriptPath = (
+            '/wp-content/plugins/hatemile-for-wp/hatemile_for_php/src/js/'
+        );
+
+        $commonFunctionsScript = $htmlParser->createElement('script');
+        $commonFunctionsScript->setAttribute(
+            'id',
+            AccessibleEventImplementation::ID_SCRIPT_COMMON_FUNCTIONS
+        );
+        $commonFunctionsScript->setAttribute('type', 'text/javascript');
+        $commonFunctionsScript->setAttribute(
+            'src',
+            get_site_url(
+                get_current_blog_id(),
+                $javascriptPath . 'common.js'
+            )
+        );
+        $local->prependElement($commonFunctionsScript);
+
+        $scriptEventListener = $htmlParser->createElement('script');
+        $scriptEventListener->setAttribute(
+            'id',
+            AccessibleEventImplementation::ID_SCRIPT_EVENT_LISTENER
+        );
+        $scriptEventListener->setAttribute('type', 'text/javascript');
+        $scriptEventListener->setAttribute(
+            'src',
+            get_site_url(
+                get_current_blog_id(),
+                $javascriptPath . 'eventlistener.js'
+            )
+        );
+        $commonFunctionsScript->insertAfter($scriptEventListener);
+
+        $scriptList = $htmlParser->createElement('script');
+        $scriptList->setAttribute(
+            'id',
+            AccessibleEventImplementation::ID_LIST_IDS_SCRIPT
+        );
+        $scriptList->setAttribute('type', 'text/javascript');
+        $scriptList->appendText('var activeElements = [];');
+        $scriptList->appendText('var hoverElements = [];');
+        $scriptList->appendText('var dragElements = [];');
+        $scriptList->appendText('var dropElements = [];');
+        $body->appendElement($scriptList);
+
+        $scriptFunction = $htmlParser->createElement('script');
+        $scriptFunction->setAttribute(
+            'id',
+            AccessibleEventImplementation::ID_FUNCTION_SCRIPT_FIX
+        );
+        $scriptFunction->setAttribute('type', 'text/javascript');
+        $scriptFunction->setAttribute(
+            'src',
+            get_site_url(
+                get_current_blog_id(),
+                $javascriptPath . 'include.js'
+            )
+        );
+        $body->appendElement($scriptFunction);
+
+        $scriptValidate = $htmlParser->createElement('script');
+        $scriptValidate->setAttribute(
+            'id',
+            AccessibleFormImplementation::ID_SCRIPT_EXECUTE_VALIDATION
+        );
+        $scriptValidate->setAttribute('type', 'text/javascript');
+        $scriptValidate->setAttribute(
+            'src',
+            get_site_url(
+                get_current_blog_id(),
+                $javascriptPath . 'validation.js'
+            )
+        );
+        $body->appendElement($scriptValidate);
+    }
+}
+
+/**
  * Execute the HaTeMiLe.
  * @param string $html The HTML code of page.
  * @return string The new HTML code of page.
@@ -80,6 +179,8 @@ function executeHatemile($html)
     try {
         $configure = new Configure();
         $htmlParser = new PhpQueryHTMLDOMParser($html);
+
+        loadStaticFilesFromHatemile($htmlParser);
 
         $accessibleEvent = new AccessibleEventImplementation(
             $htmlParser,
@@ -129,21 +230,6 @@ function executeHatemile($html)
 
         $accessibleNavigation->provideNavigationByAllSkippers();
         $accessibleDisplay->displayAllShortcuts();
-
-        $local = $htmlParser->find('head')->firstResult();
-        if ($local !== null) {
-            $styleHideElements = $htmlParser->createElement('link');
-            $styleHideElements->setAttribute('rel', 'stylesheet');
-            $styleHideElements->setAttribute('type', 'text/css');
-            $styleHideElements->setAttribute(
-                'href',
-                get_site_url(
-                    get_current_blog_id(),
-                    '/wp-content/plugins/hatemile-for-wp/css/hide_changes.css'
-                )
-            );
-            $local->appendElement($styleHideElements);
-        }
 
         return $htmlParser->getHTML();
     } catch (Exception $exception) {
