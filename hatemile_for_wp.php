@@ -111,26 +111,20 @@ $hatemileOptions = array(
  */
 function isEnableHaTeMiLeOption($optionName) {
     global $hatemileOptions;
-    $optionValue = get_option($optionName);
+
+    $option = null;
+    foreach ($hatemileOptions as $hatemileOption) {
+        if (('hatemile_' . $hatemileOption['id']) === $optionName) {
+            $option = $hatemileOption;
+            break;
+        }
+    }
+
+    $optionValue = get_option($optionName, $option['default']);
     if ((!empty($optionValue)) && ($optionValue === 'on')) {
         return true;
     } else {
-        $option = null;
-        foreach ($hatemileOptions as $hatemileOption) {
-            if (('hatemile_' . $hatemileOption['id']) === $optionName) {
-                $option = $hatemileOption;
-                break;
-            }
-        }
-        if (
-            (empty($optionValue))
-            && ($option !== null)
-            && ($option['default'] === 'on')
-        ) {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 }
 
